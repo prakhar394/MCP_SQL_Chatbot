@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PartSelect Agentic Chat</title>
+    <meta name="description" content="AI-powered assistant for refrigerator and dishwasher parts, repairs, and compatibility questions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.0" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div id="app-root" class="app-shell">
+        <aside class="app-sidebar">
+            <div class="brand">
+                <div class="brand-logo">
+                    <span class="brand-orb">PS</span>
+                </div>
+                <div class="brand-text">
+                    <h1>PartSelect Agent</h1>
+                    <p>Refrigerator &amp; Dishwasher Parts Copilot</p>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Agent Status</h2>
+                <ul class="status-list">
+                    <li>
+                        <span class="status-dot status-ok"></span>
+                        <span>LLM Orchestrator</span>
+                    </li>
+                    <li>
+                        <span class="status-dot status-ok"></span>
+                        <span>RAG Knowledge Base</span>
+                    </li>
+                    <li>
+                        <span class="status-dot status-ok"></span>
+                        <span>SQL Parts Catalog</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Try asking...</h2>
+                <ul class="hint-list">
+                    <li>“My Whirlpool fridge isn’t making ice – what should I check?”</li>
+                    <li>“Is part <code>PS11752778</code> compatible with model <code>WDT780SAEM1</code>?”</li>
+                    <li>“How hard is it to install this dishwasher pump?”</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <p class="meta-text">Data last refreshed: <strong>2025-04-06</strong></p>
+                <p class="meta-text">Scope: Refrigerator &amp; Dishwasher parts only.</p>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            <header class="app-header">
+                <div>
+                    <h1>Parts Assistant</h1>
+                    <p>Ask questions about parts, symptoms, and repairs. The agent will reason, retrieve, and validate answers before replying.</p>
+                </div>
+                <div class="header-actions">
+                    <button id="resetChatBtn" class="btn btn-secondary" type="button" aria-label="Reset conversation">
+                        <span>Reset conversation</span>
+                    </button>
+                </div>
+            </header>
+
+            <section class="chat-layout">
+                <div class="chat-pane">
+                    <div id="chatMessages" class="chat-messages"></div>
+                    <form id="chatForm" class="chat-input-row">
+                        <div class="chat-input-wrapper">
+                            <textarea
+                                id="userInput"
+                                class="chat-input"
+                                rows="1"
+                                placeholder="Describe your appliance problem or ask about a specific part..."
+                                required
+                            ></textarea>
+                        </div>
+                        <button id="sendBtn" class="btn btn-primary" type="submit" aria-label="Send message">
+                            <span class="btn-icon">➤</span>
+                            <span>Send</span>
+                        </button>
+                    </form>
+                </div>
+
+                <aside class="timeline-pane">
+                    <h2>Agent Run Timeline</h2>
+                    <p class="timeline-subtitle">
+                        For the latest answer, the agent typically follows this flow:
+                    </p>
+                    <ol class="timeline-list">
+                        <li>
+                            <h3>1. Query Analysis</h3>
+                            <p>Classifies the request, checks if it’s in scope, and decides whether retrieval is required.</p>
+                        </li>
+                        <li>
+                            <h3>2. Retrieval Tools</h3>
+                            <p>Uses RAG over repair/blog content and SQL over the parts catalog to gather evidence.</p>
+                        </li>
+                        <li>
+                            <h3>3. Answer Draft</h3>
+                            <p>The LLM drafts a proposed answer grounded in the retrieved context.</p>
+                        </li>
+                        <li>
+                            <h3>4. Safety &amp; Sanity Check</h3>
+                            <p>A validator model checks for scope, hallucinations, and quality; feedback loops if needed.</p>
+                        </li>
+                    </ol>
+                    <div id="timelineStatus" class="timeline-status">
+                        Waiting for your first question…
+                    </div>
+                </aside>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}?v=3.0"></script>
+</body>
+</html>
