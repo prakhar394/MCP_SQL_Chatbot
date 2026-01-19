@@ -1,7 +1,7 @@
 
-# PartSelect Agent – Refactored Chatbot UI & Agentic Architecture
+# MCP Agent – Refactored Chatbot UI & Agentic Architecture
 
-This refactored version of the PartSelect chat agent keeps the **core logic and behavior identical** to the original
+This version of the chat agent keeps the **core logic and behavior identical** to the original
 (MCP client, RAG + SQL tools, and multi-step LLM pipeline) but reorganizes the **UI and client-side code** so it feels
 much more like a modern chatbot / agent console.
 
@@ -53,7 +53,7 @@ The system has three main layers:
      - `static/css/style.css` – new, fully redesigned styling for an agent console UI.
      - `static/js/chat.js` – new front‑end interaction logic (no inline scripts in the template).
 
-## What Changed in This Refactor
+## What is great about the UI
 
 ### 1. Modern Chatbot‑First UI
 
@@ -104,7 +104,7 @@ The system has three main layers:
   - You can still run the same import scripts / MCP servers.
   - Any Loom demo you already planned around the original behavior will still reflect what the agent is doing under the hood.
 
-## Running the Refactored Project
+## Running the Project
 
 From the project root (`partselect-agent-main-final/` in this refactored version):
 
@@ -125,26 +125,4 @@ From the project root (`partselect-agent-main-final/` in this refactored version
 
 4. Open the browser at `http://localhost:5000` (or whatever host/port you configured).
 
-You should now see the new agentic chat UI with the same backend intelligence.
-
-## How to Talk About the Agentic Design in Your Case Study
-
-When presenting this project (e.g., in a Loom video or slide deck), you can explain the design along four pillars:
-
-1. **Orchestrated Multi‑Step Reasoning**
-   - The agent never just “one‑shot” answers a question.
-   - It analyzes the request, selectively calls tools, drafts, and then validates its own answer.
-
-2. **Tool‑Driven Grounding**
-   - RAG + SQL tools turn the LLM into a controller over **trusted sources** (parts catalog + curated repair/blog data).
-   - This significantly reduces hallucinations and keeps the agent tightly scoped to PartSelect’s domain.
-
-3. **Validator‑in‑the‑Loop Safety**
-   - A separate judge model enforces scope and consistency with retrieved evidence.
-   - Feedback from the judge is treated as another tool result and fed back into the generation loop for refinement.
-
-4. **Purpose‑Built Agent Console UI**
-   - The chat interface communicates that a **system of tools and models** is working on the user’s behalf, not a magic black box.
-   - Status badges, example prompts, and the agent run timeline make the architecture more legible to non‑technical stakeholders.
-
-This combination of a clear **agentic pipeline** and a clean **chatbot‑first UI** is exactly what you’d want to showcase for an AI Agent Engineer case study.
+You should now see the new agentic chat UI.
