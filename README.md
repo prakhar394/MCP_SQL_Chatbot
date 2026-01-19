@@ -1,5 +1,5 @@
 
-# MCP Agent – Refactored Chatbot UI & Agentic Architecture
+# MCP Agent – MCP Client + SQL Tool Calling Agentic Chatbot
 
 This version of the chat agent keeps the **core logic and behavior identical** to the original
 (MCP client, RAG + SQL tools, and multi-step LLM pipeline) but reorganizes the **UI and client-side code** so it feels
